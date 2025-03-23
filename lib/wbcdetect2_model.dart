@@ -13,15 +13,20 @@ class WBCDetect2Model {
       var response = await request.send();
       var responseData = await response.stream.bytesToString();
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200)
+      {
         List<dynamic> jsonResponse = json.decode(responseData);
 
-        if (jsonResponse.isNotEmpty && jsonResponse is List) {
+        if (jsonResponse.isNotEmpty && jsonResponse is List)
+        {
           return jsonResponse.first as Map<String, dynamic>; // ✅ Extract the first map
-        } else {
+        } else
+        {
           throw Exception("Unexpected response format.");
         }
-      } else {
+      }
+      else
+      {
         throw Exception("Failed to fetch results. HTTP Status: ${response.statusCode}");
       }
     } catch (e) {
