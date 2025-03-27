@@ -162,10 +162,12 @@ class _InferenceScreenState extends State<InferenceScreen> {
           output = base64Decode(responseData["output_image"]);
         }
 
-        results.add({
-          "input_image": image.path,
-          "output_image": output,
-          "detections": responseData["classification_predictions"],
+        setState(() {
+          results.add({
+            "input_image": image.path,
+            "output_image": output,
+            "detections": responseData["classification_predictions"],
+          });
         });
       } catch (e) {
         print("Error processing ${image.path}: $e");
